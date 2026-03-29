@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PayShield — Vendor Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="manifest" href="/manifest.json">
+<style>
+:root{--bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a26;--surface:rgba(255,255,255,.04);--border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);--indigo:#6366f1;--indigo2:#4f46e5;--indigo3:rgba(99,102,241,.15);--indigo4:rgba(99,102,241,.08);--emerald:#10b981;--rose:#f43f5e;--text:#f1f5f9;--text2:#94a3b8;--text3:#475569;--font:'Cabinet Grotesk',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-font-smoothing:antialiased;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);background-size:32px 32px;}
+.glow{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(120px);}
+.glow-1{width:500px;height:500px;background:rgba(99,102,241,.12);top:-150px;right:-100px;}
+.glow-2{width:400px;height:400px;background:rgba(16,185,129,.07);bottom:-100px;left:-80px;}
+
+.card{position:relative;z-index:1;width:100%;max-width:420px;background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:40px 36px;box-shadow:0 32px 80px rgba(0,0,0,.5),0 1px 0 rgba(255,255,255,.05) inset;}
+
+.brand{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:36px;}
+.brand-ico{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,var(--indigo),var(--indigo2));display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 0 28px rgba(99,102,241,.45);}
+.brand-name{font-size:24px;font-weight:900;letter-spacing:-.5px;}
+
+.card-ttl{font-size:26px;font-weight:900;text-align:center;letter-spacing:-.5px;margin-bottom:6px;}
+.card-sub{text-align:center;font-size:13.5px;color:var(--text3);margin-bottom:32px;line-height:1.6;}
+
+.field{margin-bottom:18px;}
+.field-lbl{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text3);margin-bottom:8px;display:block;}
+select,input[type=password]{width:100%;height:50px;background:var(--bg2);border:1px solid var(--border2);border-radius:11px;padding:0 14px;font-family:var(--font);font-size:14.5px;font-weight:500;color:var(--text);outline:none;transition:all .2s;appearance:none;}
+select:focus,input[type=password]:focus{border-color:var(--indigo);background:var(--bg3);box-shadow:0 0 0 3px rgba(99,102,241,.18);}
+input[type=password]::placeholder{color:var(--text3);font-weight:400;}
+select option{background:#1a1a26;}
+.sel-wrap{position:relative;}
+.sel-wrap::after{content:'⌄';position:absolute;right:14px;top:50%;transform:translateY(-58%);color:var(--text3);pointer-events:none;font-size:16px;}
+
+.btn-login{width:100%;height:52px;background:linear-gradient(135deg,#6366f1,#4f46e5);border:none;border-radius:12px;cursor:pointer;font-family:var(--font);font-size:15px;font-weight:700;color:#fff;box-shadow:0 4px 24px rgba(99,102,241,.4),0 1px 0 rgba(255,255,255,.1) inset;transition:all .22s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:4px;}
+.btn-login:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 32px rgba(99,102,241,.5);}
+.btn-login:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.spin{width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .6s linear infinite;display:inline-block;}
+@keyframes sp{to{transform:rotate(360deg);}}
+
+.err{display:none;margin-top:14px;background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.2);border-radius:10px;padding:11px 14px;font-size:13px;color:#fda4af;}
+.err.show{display:flex;gap:8px;}
+
+.dev-box{margin-top:24px;padding:16px;background:var(--bg2);border-radius:12px;border:1px solid var(--border);font-size:12px;color:var(--text3);line-height:1.8;}
+.dev-box strong{color:var(--text2);display:block;margin-bottom:4px;}
+code{font-family:var(--mono);background:var(--bg3);padding:2px 6px;border-radius:4px;font-size:11px;color:#a5b4fc;}
+
+.back{display:block;text-align:center;margin-top:20px;font-size:13px;color:var(--text3);text-decoration:none;transition:color .15s;}
+.back:hover{color:var(--indigo);}
+</style>
+</head>
+<body>
+<div class="glow glow-1"></div>
+<div class="glow glow-2"></div>
+
+<div class="card">
+  <div class="brand">
+    <div class="brand-ico">🛡</div>
+    <span class="brand-name">PayShield</span>
+  </div>
+  <div class="card-ttl">Vendor Login</div>
+  <p class="card-sub">Sign in to generate and manage cryptographically signed receipts for your store.</p>
+
+  <div class="field">
+    <label class="field-lbl">Select Your Store</label>
+    <div class="sel-wrap"><select id="vendor_id"></select></div>
+  </div>
+
+  <div class="field">
+    <label class="field-lbl">Password</label>
+    <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password">
+  </div>
+
+  <button class="btn-login" id="loginBtn" onclick="doLogin()">
+    <span id="loginLbl">Sign In →</span>
+  </button>
+
+  <div class="err" id="errBox"></div>
+
+  <div class="dev-box">
+    <strong>🔧 Development Credentials</strong>
+    V001 Ravi Stores → <code>ravi123</code><br>
+    V002 Meena Textiles → <code>meena123</code><br>
+    V003 Krishna Dhabha → <code>krishna123</code>
+  </div>
+
+  <a href="/" class="back">← Back to payment page</a>
+</div>
+
+<script>
+(async () => {
+  const vendors = await fetch('/api/vendors').then(r => r.json());
+  const sel = document.getElementById('vendor_id');
+  vendors.forEach(v => {
+    const o = document.createElement('option');
+    o.value = v.vendor_id;
+    o.textContent = `${v.name} (${v.vendor_id})`;
+    sel.appendChild(o);
+  });
+})();
+
+async function doLogin() {
+  const vendor_id = document.getElementById('vendor_id').value;
+  const password  = document.getElementById('password').value.trim();
+  const btn       = document.getElementById('loginBtn');
+  const lbl       = document.getElementById('loginLbl');
+  const err       = document.getElementById('errBox');
+  err.classList.remove('show');
+  if (!password) { showErr('Password is required.'); return; }
+  btn.disabled = true; lbl.innerHTML = '<span class="spin"></span>';
+  try {
+    const res  = await fetch('/api/auth/login', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ vendor_id, password })
+    });
+    const data = await res.json();
+    if (!res.ok) { showErr(data.error || 'Login failed'); return; }
+    localStorage.setItem('ps_token', data.token);
+    localStorage.setItem('ps_vendor_id', data.vendor_id);
+    localStorage.setItem('ps_vendor_name', data.vendor_name);
+    window.location.href = '/vendor';
+  } catch(e) { showErr('Server error — is Flask running?'); }
+  finally { btn.disabled = false; lbl.textContent = 'Sign In →'; }
+}
+function showErr(m) { const e = document.getElementById('errBox'); e.textContent = '⚠  ' + m; e.classList.add('show'); }
+document.getElementById('password').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+</script>
+</body>
+</html>

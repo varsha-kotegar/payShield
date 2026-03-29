@@ -1,0 +1,37 @@
+# Environment & secrets — NEVER commit these
+.env
+keys/private_key.pem
+keys/public_key.pem
+
+# Database (contains transaction data)
+database/payments.db
+database/*.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Logs
+logs/*.log
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Gunicorn
+/tmp/payshield.pid

@@ -1,0 +1,23 @@
+# Core
+flask>=2.3.0
+cryptography>=41.0.0
+qrcode[pil]>=7.4.2
+Pillow>=10.0.0
+
+# JWT authentication
+PyJWT>=2.8.0
+
+# GST PDF generation
+reportlab>=4.0.0
+
+# Production server
+gunicorn>=21.2.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# PostgreSQL (optional — uncomment + pip install if using Postgres)
+# psycopg2-binary>=2.9.9
+
+# AWS KMS (optional — uncomment + pip install if using KMS)
+# boto3>=1.34.0
