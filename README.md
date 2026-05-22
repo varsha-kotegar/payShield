@@ -293,18 +293,6 @@ psql $DATABASE_URL < migrations/001_add_expiry_and_gst.sql
 
 ---
 
-## Interview Highlights
-
-Talk about:
-
-- secure receipt signing and verification using RSA-PSS
-- how JWT protects vendor sessions
-- PWA + QR workflow for mobile-first verification
-- production deployment with Nginx, Gunicorn, and optional PostgreSQL
-- secure key management using environment variables or AWS KMS
-
----
-
 ## License
 
 MIT License. See `LICENSE`.
